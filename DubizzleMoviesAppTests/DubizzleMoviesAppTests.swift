@@ -21,16 +21,56 @@ class DubizzleMoviesAppTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    //MARK: Configuration
+    
+    func testConfiguration() {
+    
+        let masterViewController = MasterViewController()
+        let API_KEY = masterViewController.API_KEY
+        
+        XCTAssertNotEqual(API_KEY, "API_KEY")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    //MARK: MoviesList
+    
+    func testMoviesList() {
+        
+        var resultError: Error? = nil;
+        let expectation = self.expectation(description: "Wait for data to load.")
+        let masterViewController = MasterViewController()
+        masterViewController.getMoviesviaApi() {
+            status, error in
+            
+            resultError = error
+            expectation.fulfill()
         }
+        
+        waitForExpectations(timeout: 30, handler: nil)
+        
+        XCTAssertNil(resultError)
+  
     }
+
+    /*
+    func EmptyMoviesList() {
+    
+        let defaults = UserDefaults.standard
+        defaults.set(1750, forKey: "MinYear")
+        defaults.set(1751, forKey: "MaxYear")
+        defaults.synchronize()
+        
+        let expectation = self.expectation(description: "Wait for data to load.")
+        let masterViewController = MasterViewController()
+        masterViewController.deleteMovies()
+        masterViewController.getMoviesviaApi(){
+            movies in
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 20, handler: nil)
+        XCTAssertEqual(masterViewController.results.count, 0)
+
+    }
+    */
     
 }
