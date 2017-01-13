@@ -1,6 +1,7 @@
 # Movies App
 
-This app uses [The Movie DB](https://www.themoviedb.org/documentation/api) api to get movies max and min year (default to 2014 - 2016).
+This app uses [The Movie DB](https://www.themoviedb.org/documentation/api) api to get movies list between 
+max and min year (default min = 2014 and max = 2016).
 
 <img src="screenshots/home.png">
 
