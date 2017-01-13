@@ -2,6 +2,8 @@
 
 This app uses [The Movie DB](https://www.themoviedb.org/documentation/api) api to get movies max and min year (default to 2014 - 2016).
 
+<img src="screenshots/home.png">
+
 ## Configuration
 
 - Obtain an Api Key from [The Movie DB](https://www.themoviedb.org/documentation/api).
@@ -22,3 +24,4 @@ This app uses [The Movie DB](https://www.themoviedb.org/documentation/api) api t
 - AlamoFire
 - KingFisher
 - SwityJSON
+ß

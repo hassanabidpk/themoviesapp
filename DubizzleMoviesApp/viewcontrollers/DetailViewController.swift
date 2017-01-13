@@ -27,10 +27,10 @@ class DetailViewController: UIViewController {
         if let detail = self.detailItem {
             
             let formatted_date = self.getFormattedDateForUI(detail.release_date)
-            self.relaseDateLabel.text = "Release Date : \(formatted_date)"
+            self.relaseDateLabel.text = "Released on \(formatted_date)"
 
             self.titleLabel.text = detail.title
-            self.voteCount.text = "Vote Count : \(detail.vote_count)"
+            self.voteCount.text = "Votes : \(detail.vote_count)"
             self.overviewLabel.text = detail.overview
             
             self.posterImage.kf.setImage(with: URL(string: "\(IMAGE_BASE_URL)\(detail.poster_path)")!,

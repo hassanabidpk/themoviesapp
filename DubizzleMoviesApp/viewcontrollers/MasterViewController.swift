@@ -30,8 +30,8 @@ class MasterViewController: UITableViewController {
     
     
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
 
+    var activityIndicatorView: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +84,9 @@ class MasterViewController: UITableViewController {
             }
         }
         
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        self.tableView.backgroundView = activityIndicatorView
+        
         setDefaultValues()
 
         if(results.count == 0) {
@@ -94,6 +97,8 @@ class MasterViewController: UITableViewController {
     
     
     func getMoviesviaApi(completion: @escaping (Bool, Error?) -> ()) {
+        
+        activityIndicatorView.startAnimating()
         
         let minYear = defaults.value(forKey: "MinYear") as! Int
         let maxYear = defaults.value(forKey: "MaxYear") as! Int
@@ -125,11 +130,14 @@ class MasterViewController: UITableViewController {
                             completion(false, NSError(domain: "MoviesListNotFound", code: 200, userInfo: nil))
 
                         }
+                        self.activityIndicatorView.stopAnimating()
+
                         
                     }
                 case .failure(let error):
-                    print(error)
-                     completion(false, error)
+                        print(error)
+                        completion(false, error)
+                        self.activityIndicatorView.stopAnimating()
                 }
                 
         }
@@ -346,6 +354,11 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    func configureGrayActivityIndicatorView() {
+        activityIndicatorView.activityIndicatorViewStyle = .gray
+        
+        activityIndicatorView.hidesWhenStopped = true
+    }
 
 
 }
